@@ -4,3 +4,5 @@ CREATE TABLE short_links
     long_link  TEXT NOT NULL,
     short_link TEXT NOT NULL UNIQUE
 );
+
+-- Не добавил комментарии к таблице и полям =(
