@@ -10,7 +10,6 @@ import org.springframework.web.servlet.view.RedirectView;
 public class LinkController {
     private final LinkService linkService;
 
-    // Я бы подключил Lombok, чтобы не писать конструкторы, но тут как хочешь
     public LinkController(LinkService linkService) {
         this.linkService = linkService;
     }
@@ -18,7 +17,6 @@ public class LinkController {
     @PostMapping("/shorten")
     public ResponseEntity<String> createShortLink(@RequestBody String longUrl) {
         String shortUrl = linkService.createShortUrl(longUrl);
-        // links Лишнее. У нас же цель сделать ссылку как можно короче
         return ResponseEntity.ok("http://localhost:8080/links/" + shortUrl);
     }
 
@@ -26,7 +24,6 @@ public class LinkController {
     public RedirectView redirectToLongUrl(@PathVariable String shortUrl) {
         return linkService.getByShortUrl(shortUrl)
                 .map(link -> new RedirectView(link.getLongUrl()))
-                // Ну не ERROR, а просто сайт не нашли, но это так... Придирки, обычно бизнес скажет как обработать такую штуку
                 .orElseGet(() -> new RedirectView("/error"));
     }
 }
