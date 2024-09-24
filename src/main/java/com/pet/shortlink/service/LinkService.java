@@ -23,6 +23,7 @@ public class LinkService {
         if (existingLink.isPresent()) {
             return existingLink.get().getShortUrl();
         }
+        // сеттеры не очень( Лучше сразу инициализировать готовый объект, то есть поля прокидывать в конструктор
         LinkEntity linkEntity = new LinkEntity();
         linkEntity.setLongUrl(longUrl);
         linkEntity.setShortUrl(shortUrl);
